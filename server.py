@@ -1,8 +1,4 @@
-#!/usr/bin/env python3
-"""
-Curated MCP Server for Testing
-Provides tools using carefully selected free APIs
-"""
+ #!/usr/bin/env python3
 
 import asyncio
 import json
@@ -248,11 +244,11 @@ async def call_tool(name: str, arguments: Dict[str, Any]) -> List[TextContent]:
                         "https://icanhazdadjoke.com/", headers={"Accept": "application/json"}
                     )
                     data = response.json()
-                    # FIX: avoid backslash escaping inside f-string expression
+                    default_joke = "Why don't scientists trust atoms? Because they make up everything!"
                     return [
                         TextContent(
                             type="text",
-                            text=f"😄 Dad Joke:\n\n{data.get('joke', \"Why don't scientists trust atoms? Because they make up everything!\")}",
+                            text=f"😄 Dad Joke:\n\n{data.get('joke', default_joke)}",
                         )
                     ]
                 else:
@@ -361,7 +357,7 @@ async def call_tool(name: str, arguments: Dict[str, Any]) -> List[TextContent]:
 
                     if artist.get("tags"):
                         genres = [tag["name"] for tag in artist["tags"][:3]]
-                        artist_info += f"🎼 Genres: {", ".join(genres)}\n"
+                        artist_info += f"🎼 Genres: {', '.join(genres)}\n"
 
                     artist_info += f"⭐ Score: {artist.get('score', 0)}/100"
 
