@@ -130,6 +130,6 @@ async def search_books(query: str, limit: int = 5) -> List[dict]:
 if __name__ == "__main__":
     # Bind to Codespaces
     mcp.settings.host = "0.0.0.0"
-    mcp.settings.port = int(os.getenv("PORT", "3258"))
+    mcp.settings.port = int(os.getenv("PORT", "8080"))
     # Default SSE mount path is "/sse"; keep it so Aria can connect with .../sse
     mcp.run(transport="sse")
